@@ -1,0 +1,10 @@
+br/ufms/facom/techms/model/entity/Produto.class
+br/ufms/facom/techms/model/service/ProdutoService.class
+br/ufms/facom/techms/model/dao/ProdutoDAO.class
+br/ufms/facom/techms/Techms.class
+br/ufms/facom/techms/view/ProdutoView$2.class
+br/ufms/facom/techms/controller/ProdutoController.class
+br/ufms/facom/techms/view/ProdutoView$4.class
+br/ufms/facom/techms/view/ProdutoView$1.class
+br/ufms/facom/techms/view/ProdutoView.class
+br/ufms/facom/techms/view/ProdutoView$3.class
