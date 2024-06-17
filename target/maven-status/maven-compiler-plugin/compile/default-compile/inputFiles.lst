@@ -1,6 +1,14 @@
-/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/dao/ProdutoDAO.java
+/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/entity/ItemVenda.java
 /home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/view/ProdutoView.java
 /home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/controller/ProdutoController.java
 /home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/service/ProdutoService.java
 /home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/entity/Produto.java
 /home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/Techms.java
+/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/entity/Fornecedor.java
+/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/entity/Pessoa.java
+/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/entity/Categoria.java
+/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/dao/ProdutoDAO.java
+/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/entity/Venda.java
+/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/entity/Estoque.java
+/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/entity/Funcionario.java
+/home/gustavo/NetBeansProjects/techms/src/main/java/br/ufms/facom/techms/model/entity/Cliente.java
