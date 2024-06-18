@@ -4,18 +4,29 @@
  */
 package br.ufms.facom.techms.model.entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gustavo
  */
 
-public class Cliente {
+public class Cliente implements Serializable{
+    private int id;
     private String email;
     private String nome;
     private String endereco;
     private String telefone;
 
     // Getters e Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getEmail() {
         return email;
     }
