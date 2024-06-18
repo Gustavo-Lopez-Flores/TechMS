@@ -1,8 +1,11 @@
+br\ufms\facom\techms\controller\VendaController.class
 br\ufms\facom\techms\controller\ProdutoController.class
+br\ufms\facom\techms\view\VendaView.class
 br\ufms\facom\techms\model\service\ProdutoService.class
 br\ufms\facom\techms\view\ProdutoView.class
 br\ufms\facom\techms\model\dao\ProdutoDAO.class
 br\ufms\facom\techms\view\ProdutoView$2.class
+br\ufms\facom\techms\model\dao\VendaDAO.class
 br\ufms\facom\techms\model\entity\Fornecedor.class
 br\ufms\facom\techms\model\entity\Pessoa.class
 br\ufms\facom\techms\view\ProdutoView$3.class
@@ -10,6 +13,7 @@ br\ufms\facom\techms\model\entity\Estoque.class
 br\ufms\facom\techms\model\entity\ItemVenda.class
 br\ufms\facom\techms\model\entity\Venda.class
 br\ufms\facom\techms\model\entity\Produto.class
+br\ufms\facom\techms\view\VendaView$1.class
 br\ufms\facom\techms\model\entity\Cliente.class
 br\ufms\facom\techms\view\ProdutoView$1.class
 br\ufms\facom\techms\view\ProdutoView$4.class

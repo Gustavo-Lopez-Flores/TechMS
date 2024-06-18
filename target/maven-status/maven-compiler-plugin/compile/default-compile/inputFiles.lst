@@ -1,11 +1,14 @@
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\model\entity\Venda.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\model\service\ProdutoService.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\model\entity\Categoria.java
+C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\controller\VendaController.java
+C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\model\dao\VendaDAO.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\Techms.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\model\entity\Produto.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\controller\ProdutoController.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\model\entity\Pessoa.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\view\ProdutoView.java
+C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\view\VendaView.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\model\entity\Funcionario.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\model\dao\ProdutoDAO.java
 C:\Users\gustavo.flores\Documents\GUSTAVO\PROJETOS\TechMS\src\main\java\br\ufms\facom\techms\model\entity\Fornecedor.java

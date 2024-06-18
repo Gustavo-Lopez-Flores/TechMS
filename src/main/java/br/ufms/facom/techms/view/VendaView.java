@@ -12,6 +12,7 @@ import br.ufms.facom.techms.controller.VendaController;
 import br.ufms.facom.techms.model.entity.Produto;
 import br.ufms.facom.techms.model.entity.ItemVenda;
 import br.ufms.facom.techms.model.entity.Venda;
+import br.ufms.facom.techms.model.entity.Funcionario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,10 +24,12 @@ import java.util.List;
 public class VendaView extends JFrame {
     private VendaController vendaController;
     private JComboBox<Produto> cmbProdutos;
+    private JComboBox<Funcionario> cmbFuncionarios;
     private JSpinner spnQuantidade;
     private JButton btnAdicionarItem, btnRemoverItem, btnFinalizarVenda;
     private JTextArea txtItensVenda;
     private DefaultComboBoxModel<Produto> produtoModel;
+    private DefaultComboBoxModel<Funcionario> funcionarioModel;
     private Venda venda;
 
     public VendaView(VendaController vendaController) {
@@ -39,7 +42,13 @@ public class VendaView extends JFrame {
         setTitle("Realizar Venda");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(6, 2));
+        setLayout(new GridLayout(7, 2));
+
+        JLabel lblFuncionario = new JLabel("Funcionário:");
+        cmbFuncionarios = new JComboBox<>();
+        funcionarioModel = new DefaultComboBoxModel<>();
+        carregarFuncionarios();
+        cmbFuncionarios.setModel(funcionarioModel);
 
         JLabel lblProduto = new JLabel("Produto:");
         cmbProdutos = new JComboBox<>();
@@ -57,6 +66,8 @@ public class VendaView extends JFrame {
         txtItensVenda = new JTextArea();
         txtItensVenda.setEditable(false);
 
+        add(lblFuncionario);
+        add(cmbFuncionarios);
         add(lblProduto);
         add(cmbProdutos);
         add(lblQuantidade);
@@ -101,6 +112,17 @@ public class VendaView extends JFrame {
         }
     }
 
+    private void carregarFuncionarios() {
+        try {
+            List<Funcionario> funcionarios = vendaController.getAllFuncionarios();
+            for (Funcionario funcionario : funcionarios) {
+                funcionarioModel.addElement(funcionario);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar funcionários.");
+        }
+    }
+
     private void adicionarItem(Produto produto, int quantidade) {
         ItemVenda itemVenda = new ItemVenda();
         itemVenda.setProduto(produto);
@@ -124,6 +146,13 @@ public class VendaView extends JFrame {
     }
 
     private void finalizarVenda() {
+        Funcionario funcionario = (Funcionario) cmbFuncionarios.getSelectedItem();
+        if (funcionario == null) {
+            JOptionPane.showMessageDialog(this, "Selecione um funcionário.");
+            return;
+        }
+        venda.setFuncionario(funcionario);
+
         try {
             vendaController.finalizarVenda(venda);
             JOptionPane.showMessageDialog(this, "Venda finalizada com sucesso!");
