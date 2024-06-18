@@ -8,7 +8,6 @@ package br.ufms.facom.techms.model.dao;
  *
  * @author gustavo
  */
-
 import br.ufms.facom.techms.model.entity.Produto;
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,12 +21,16 @@ public class ProdutoDAO {
     }
 
     public void create(Produto produto) throws SQLException {
-        String sql = "INSERT INTO produto (nome, especificacaoTecnica, garantia, imagem) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO produto (nome, especificacaoTecnica, garantia, imagem, anoFabricacao, precoVenda, quantidade, categoria_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getEspecificacaoTecnica());
             stmt.setString(3, produto.getGarantia());
             stmt.setString(4, produto.getImagem());
+            stmt.setInt(5, produto.getAnoFabricacao());
+            stmt.setDouble(6, produto.getPrecoVenda());
+            stmt.setInt(7, produto.getQuantidade());
+            stmt.setInt(8, produto.getCategoriaId());
             stmt.executeUpdate();
         }
     }
@@ -44,6 +47,10 @@ public class ProdutoDAO {
                     produto.setEspecificacaoTecnica(rs.getString("especificacaoTecnica"));
                     produto.setGarantia(rs.getString("garantia"));
                     produto.setImagem(rs.getString("imagem"));
+                    produto.setAnoFabricacao(rs.getInt("anoFabricacao"));
+                    produto.setPrecoVenda(rs.getDouble("precoVenda"));
+                    produto.setQuantidade(rs.getInt("quantidade"));
+                    produto.setCategoriaId(rs.getInt("categoria_id"));
                     return produto;
                 }
             }
@@ -63,6 +70,10 @@ public class ProdutoDAO {
                 produto.setEspecificacaoTecnica(rs.getString("especificacaoTecnica"));
                 produto.setGarantia(rs.getString("garantia"));
                 produto.setImagem(rs.getString("imagem"));
+                produto.setAnoFabricacao(rs.getInt("anoFabricacao"));
+                produto.setPrecoVenda(rs.getDouble("precoVenda"));
+                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setCategoriaId(rs.getInt("categoria_id"));
                 produtos.add(produto);
             }
         }
@@ -70,13 +81,17 @@ public class ProdutoDAO {
     }
 
     public void update(Produto produto) throws SQLException {
-        String sql = "UPDATE produto SET nome = ?, especificacaoTecnica = ?, garantia = ?, imagem = ? WHERE id = ?";
+        String sql = "UPDATE produto SET nome = ?, especificacaoTecnica = ?, garantia = ?, imagem = ?, anoFabricacao = ?, precoVenda = ?, quantidade = ?, categoria_id = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getEspecificacaoTecnica());
             stmt.setString(3, produto.getGarantia());
             stmt.setString(4, produto.getImagem());
-            stmt.setInt(5, produto.getId());
+            stmt.setInt(5, produto.getAnoFabricacao());
+            stmt.setDouble(6, produto.getPrecoVenda());
+            stmt.setInt(7, produto.getQuantidade());
+            stmt.setInt(8, produto.getCategoriaId());
+            stmt.setInt(9, produto.getId());
             stmt.executeUpdate();
         }
     }
