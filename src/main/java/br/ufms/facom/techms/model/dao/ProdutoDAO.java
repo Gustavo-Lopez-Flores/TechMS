@@ -96,6 +96,16 @@ public class ProdutoDAO {
         }
     }
 
+    public void updateQuantidade(int id, int quantidade) throws SQLException {
+    String sql = "UPDATE produto SET quantidade = ? WHERE id = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setInt(1, quantidade);
+        stmt.setInt(2, id);
+        stmt.executeUpdate();
+    }
+}
+
+    
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM produto WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
