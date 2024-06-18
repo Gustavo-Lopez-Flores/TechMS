@@ -8,10 +8,12 @@ package br.ufms.facom.techms.model.entity;
  *
  * @author gustavo
  */
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Venda {
+public class Venda implements Serializable {
     private int id;
     private Date data;
     private String formaPagamento;
@@ -19,6 +21,12 @@ public class Venda {
     private Funcionario funcionario;
     private Cliente cliente;
     private List<ItemVenda> itens;
+
+    // Construtor
+    public Venda() {
+        this.itens = new ArrayList<>();
+        this.data = new Date();
+    }
 
     // Getters e Setters
     public int getId() {
@@ -75,5 +83,26 @@ public class Venda {
 
     public void setItens(List<ItemVenda> itens) {
         this.itens = itens;
+        calcularValorTotal();
+    }
+
+    // Método para adicionar um item à venda e recalcular o valor total
+    public void addItem(ItemVenda item) {
+        this.itens.add(item);
+        calcularValorTotal();
+    }
+
+    // Método para remover um item da venda e recalcular o valor total
+    public void removeItem(ItemVenda item) {
+        this.itens.remove(item);
+        calcularValorTotal();
+    }
+
+    // Método para calcular o valor total da venda
+    private void calcularValorTotal() {
+        this.valorTotal = 0;
+        for (ItemVenda item : itens) {
+            this.valorTotal += item.getQuantidade() * item.getPrecoUnitario();
+        }
     }
 }
