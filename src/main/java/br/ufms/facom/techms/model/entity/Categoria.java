@@ -13,8 +13,6 @@ public class Categoria {
     private int id;
     private String marca;
     private String modelo;
-    private int anoDeFabricacao;
-    private double precoVenda;
 
     // Getters e Setters
     public int getId() {
@@ -39,21 +37,5 @@ public class Categoria {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
-    }
-
-    public int getAnoDeFabricacao() {
-        return anoDeFabricacao;
-    }
-
-    public void setAnoDeFabricacao(int anoDeFabricacao) {
-        this.anoDeFabricacao = anoDeFabricacao;
-    }
-
-    public double getPrecoVenda() {
-        return precoVenda;
-    }
-
-    public void setPrecoVenda(double precoVenda) {
-        this.precoVenda = precoVenda;
     }
 }
