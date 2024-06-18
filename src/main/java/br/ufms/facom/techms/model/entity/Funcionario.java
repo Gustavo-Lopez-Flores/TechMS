@@ -4,18 +4,29 @@
  */
 package br.ufms.facom.techms.model.entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gustavo
  */
 
-public class Funcionario extends Pessoa {
+public class Funcionario extends Pessoa implements Serializable {
+    private int id;
     private String cargo;
     private String setor;
     private double salario;
     private String numCarteiraTrabalho;
 
     // Getters e Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getCargo() {
         return cargo;
     }
