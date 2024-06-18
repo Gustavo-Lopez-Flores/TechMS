@@ -58,4 +58,9 @@ public class Funcionario extends Pessoa implements Serializable {
     public void setNumCarteiraTrabalho(String numCarteiraTrabalho) {
         this.numCarteiraTrabalho = numCarteiraTrabalho;
     }
+    
+    @Override
+    public String toString() {
+        return getNome();  // Para exibir corretamente o nome no JComboBox
+    }
 }
