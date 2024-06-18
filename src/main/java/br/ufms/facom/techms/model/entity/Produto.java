@@ -91,4 +91,9 @@ public class Produto {
     public void setCategoriaId(int categoriaId) {
         this.categoriaId = categoriaId;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }
