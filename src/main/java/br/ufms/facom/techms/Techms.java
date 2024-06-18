@@ -8,6 +8,7 @@ import br.ufms.facom.techms.controller.ProdutoController;
 import br.ufms.facom.techms.controller.VendaController;
 import br.ufms.facom.techms.model.dao.ProdutoDAO;
 import br.ufms.facom.techms.model.dao.VendaDAO;
+import br.ufms.facom.techms.model.dao.FuncionarioDAO;
 import br.ufms.facom.techms.model.service.ProdutoService;
 import br.ufms.facom.techms.view.ProdutoView;
 import br.ufms.facom.techms.view.VendaView;
@@ -15,30 +16,25 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author gustavo
- */
 public class Techms {
 
     public static void main(String[] args) throws SQLException {
         // Inicialização do banco de dados e injeção de dependências
-        Connection connection = null; // Obtenha uma conexão com o banco de dados
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techms", "postgres", "minhasenha");
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techms", "postgres", "minhasenha");
 
         ProdutoDAO produtoDAO = new ProdutoDAO(connection);
         VendaDAO vendaDAO = new VendaDAO(connection);
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
 
         ProdutoService produtoService = new ProdutoService(produtoDAO);
 
         ProdutoController produtoController = new ProdutoController(produtoService);
-        VendaController vendaController = new VendaController(vendaDAO, produtoDAO);
- 
+        VendaController vendaController = new VendaController(vendaDAO, produtoDAO, funcionarioDAO);
+
         ProdutoView produtoView = new ProdutoView(produtoController);
         VendaView vendaView = new VendaView(vendaController);
         
         produtoView.setVisible(true);
         vendaView.setVisible(true);
-
     }
 }
