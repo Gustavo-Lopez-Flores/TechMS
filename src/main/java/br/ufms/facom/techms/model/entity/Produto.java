@@ -14,6 +14,9 @@ public class Produto {
     private String especificacaoTecnica;
     private String garantia;
     private String imagem;
+    private int anoDeFabricacao;
+    private double precoVenda;
+    private int categoriaId;
 
     // Getters e Setters
     public int getId() {
@@ -55,4 +58,28 @@ public class Produto {
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
+
+    public int getAnoDeFabricacao() {
+        return anoDeFabricacao;
+    }
+
+    public void setAnoDeFabricacao(int anoDeFabricacao) {
+        this.anoDeFabricacao = anoDeFabricacao;
+    }
+
+    public double getPrecoVenda() {
+        return precoVenda;
+    }
+
+    public void setPrecoVenda(double precoVenda) {
+        this.precoVenda = precoVenda;
+    }
+
+    public int getCategoriaId() {
+        return categoriaId;
+    }
+
+    public void setCategoriaId(int categoriaId) {
+        this.categoriaId = categoriaId;
+    }    
 }
