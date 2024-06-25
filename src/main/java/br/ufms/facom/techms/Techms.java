@@ -6,6 +6,7 @@ package br.ufms.facom.techms;
 
 import br.ufms.facom.techms.controller.ProdutoController;
 import br.ufms.facom.techms.controller.VendaController;
+import br.ufms.facom.techms.model.dao.ClienteDAO;
 import br.ufms.facom.techms.model.dao.ProdutoDAO;
 import br.ufms.facom.techms.model.dao.VendaDAO;
 import br.ufms.facom.techms.model.dao.FuncionarioDAO;
@@ -25,11 +26,12 @@ public class Techms {
         ProdutoDAO produtoDAO = new ProdutoDAO(connection);
         VendaDAO vendaDAO = new VendaDAO(connection);
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
+        ClienteDAO clienteDAO = new ClienteDAO(connection);  
 
         ProdutoService produtoService = new ProdutoService(produtoDAO);
 
         ProdutoController produtoController = new ProdutoController(produtoService);
-        VendaController vendaController = new VendaController(vendaDAO, produtoDAO, funcionarioDAO);
+        VendaController vendaController = new VendaController(vendaDAO, produtoDAO, funcionarioDAO, clienteDAO);  
 
         ProdutoView produtoView = new ProdutoView(produtoController);
         VendaView vendaView = new VendaView(vendaController);
