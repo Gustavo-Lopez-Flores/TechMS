@@ -200,10 +200,11 @@ public class VendaView extends JFrame {
         try {
             vendaController.finalizarVenda(venda);
             JOptionPane.showMessageDialog(this, "Venda finalizada com sucesso!");
-            venda = new Venda();  // Resetar a venda atual
+            venda = new Venda();  
             atualizarTextoItensVenda();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao finalizar venda.");
+            JOptionPane.showMessageDialog(this, "Erro ao finalizar venda: " + e.getMessage());  // Detalhar o erro
+            e.printStackTrace();  
         }
     }
 }
