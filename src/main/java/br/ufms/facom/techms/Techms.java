@@ -20,7 +20,7 @@ public class Techms {
 
     public static void main(String[] args) throws SQLException {
         // Inicialização do banco de dados e injeção de dependências
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techms", "postgres", "minhasenha");
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/techms", "postgres", "postgres");
 
         ProdutoDAO produtoDAO = new ProdutoDAO(connection);
         VendaDAO vendaDAO = new VendaDAO(connection);
