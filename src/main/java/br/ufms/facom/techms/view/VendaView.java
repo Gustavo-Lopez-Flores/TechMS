@@ -26,13 +26,14 @@ public class VendaView extends JFrame {
     private VendaController vendaController;
     private JComboBox<Produto> cmbProdutos;
     private JComboBox<Funcionario> cmbFuncionarios;
-    private JComboBox<Cliente> cmbClientes; 
+    private JComboBox<Cliente> cmbClientes; // Adicionado JComboBox para Cliente
+    private JComboBox<String> cmbFormaPagamento; // Adicionado JComboBox para Forma de Pagamento
     private JSpinner spnQuantidade;
     private JButton btnAdicionarItem, btnRemoverItem, btnFinalizarVenda;
     private JTextArea txtItensVenda;
     private DefaultComboBoxModel<Produto> produtoModel;
     private DefaultComboBoxModel<Funcionario> funcionarioModel;
-    private DefaultComboBoxModel<Cliente> clienteModel; 
+    private DefaultComboBoxModel<Cliente> clienteModel; // Adicionado modelo para Cliente
     private Venda venda;
 
     public VendaView(VendaController vendaController) {
@@ -41,11 +42,11 @@ public class VendaView extends JFrame {
         initialize();
     }
 
-   private void initialize() {
+    private void initialize() {
         setTitle("Realizar Venda");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(9, 2));  // Atualize para 9 linhas
+        setLayout(new GridLayout(9, 2));  // Atualizado para 9 linhas
 
         JLabel lblFuncionario = new JLabel("Funcionário:");
         cmbFuncionarios = new JComboBox<>();
@@ -68,6 +69,9 @@ public class VendaView extends JFrame {
         JLabel lblQuantidade = new JLabel("Quantidade:");
         spnQuantidade = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
 
+        JLabel lblFormaPagamento = new JLabel("Forma de Pagamento:");
+        cmbFormaPagamento = new JComboBox<>(new String[]{"Dinheiro", "Cartão de Crédito", "Cartão de Débito"});
+
         btnAdicionarItem = new JButton("Adicionar Item");
         btnRemoverItem = new JButton("Remover Item");
         btnFinalizarVenda = new JButton("Finalizar Venda");
@@ -83,6 +87,8 @@ public class VendaView extends JFrame {
         add(cmbProdutos);
         add(lblQuantidade);
         add(spnQuantidade);
+        add(lblFormaPagamento);
+        add(cmbFormaPagamento);
         add(btnAdicionarItem);
         add(btnRemoverItem);
         add(new JScrollPane(txtItensVenda));
@@ -145,7 +151,6 @@ public class VendaView extends JFrame {
         }
     }
 
-
     private void adicionarItem(Produto produto, int quantidade) {
         ItemVenda itemVenda = new ItemVenda();
         itemVenda.setProduto(produto);
@@ -153,20 +158,6 @@ public class VendaView extends JFrame {
         itemVenda.setPrecoUnitario(produto.getPrecoVenda());
         venda.addItem(itemVenda);
         atualizarTextoItensVenda();
-    }
-
-    private void removerItem(Produto produto) {
-        ItemVenda itemRemover = null;
-        for (ItemVenda item : venda.getItens()) {
-            if (item.getProduto().getId() == produto.getId()) {
-                itemRemover = item;
-                break;
-            }
-        }
-        if (itemRemover != null) {
-            venda.removeItem(itemRemover);
-            atualizarTextoItensVenda();
-        }
     }
 
     private void atualizarTextoItensVenda() {
@@ -182,7 +173,7 @@ public class VendaView extends JFrame {
         txtItensVenda.setText(sb.toString());
     }
 
-   private void finalizarVenda() {
+    private void finalizarVenda() {
         Funcionario funcionario = (Funcionario) cmbFuncionarios.getSelectedItem();
         if (funcionario == null) {
             JOptionPane.showMessageDialog(this, "Selecione um funcionário.");
@@ -197,6 +188,13 @@ public class VendaView extends JFrame {
         }
         venda.setCliente(cliente);  // Define o cliente na venda
 
+        String formaPagamento = (String) cmbFormaPagamento.getSelectedItem();
+        if (formaPagamento == null || formaPagamento.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Selecione uma forma de pagamento.");
+            return;
+        }
+        venda.setFormaPagamento(formaPagamento);  // Define a forma de pagamento
+
         try {
             vendaController.finalizarVenda(venda);
             JOptionPane.showMessageDialog(this, "Venda finalizada com sucesso!");
@@ -207,5 +205,4 @@ public class VendaView extends JFrame {
             e.printStackTrace();
         }
     }
-
 }

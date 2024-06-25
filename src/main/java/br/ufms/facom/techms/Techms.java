@@ -26,12 +26,12 @@ public class Techms {
         ProdutoDAO produtoDAO = new ProdutoDAO(connection);
         VendaDAO vendaDAO = new VendaDAO(connection);
         FuncionarioDAO funcionarioDAO = new FuncionarioDAO(connection);
-        ClienteDAO clienteDAO = new ClienteDAO(connection);  
+        ClienteDAO clienteDAO = new ClienteDAO(connection);  // Adicionado ClienteDAO
 
         ProdutoService produtoService = new ProdutoService(produtoDAO);
 
         ProdutoController produtoController = new ProdutoController(produtoService);
-        VendaController vendaController = new VendaController(vendaDAO, produtoDAO, funcionarioDAO, clienteDAO);  
+        VendaController vendaController = new VendaController(vendaDAO, produtoDAO, funcionarioDAO, clienteDAO);  // Adicionado clienteDAO
 
         ProdutoView produtoView = new ProdutoView(produtoController);
         VendaView vendaView = new VendaView(vendaController);
