@@ -12,6 +12,7 @@ import br.ufms.facom.techms.model.dao.ClienteDAO;
 import br.ufms.facom.techms.model.dao.ProdutoDAO;
 import br.ufms.facom.techms.model.dao.VendaDAO;
 import br.ufms.facom.techms.model.dao.FuncionarioDAO;
+import br.ufms.facom.techms.model.entity.Cliente;
 import br.ufms.facom.techms.model.entity.Produto;
 import br.ufms.facom.techms.model.entity.Funcionario;
 import br.ufms.facom.techms.model.entity.Venda;
