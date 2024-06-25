@@ -208,13 +208,42 @@ public class ProdutoView extends javax.swing.JFrame {
     }                                         
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // Lógica de atualização
-    }                                            
+        try {
+            Produto produto = new Produto();
+            produto.setId(Integer.parseInt(JOptionPane.showInputDialog(this, "Digite o ID do produto a ser atualizado:")));
+            produto.setNome(txtNome.getText());
+            produto.setEspecificacaoTecnica(txtEspecificacaoTecnica.getText());
+            produto.setGarantia(txtGarantia.getText());
+            produto.setImagem(txtImagem.getText());
+            produto.setAnoFabricacao(Integer.parseInt(txtAnoFabricacao.getText()));
+            produto.setPrecoVenda(Double.parseDouble(txtPrecoVenda.getText()));
+            produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+            produto.setCategoriaId(Integer.parseInt(txtCategoriaId.getText()));
+            produtoController.updateProduto(produto);
+            JOptionPane.showMessageDialog(this, "Produto atualizado com sucesso!");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao atualizar produto.");
+        } catch (NumberFormatException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Formato de número inválido.");
+        }
+    }
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // Lógica de deleção
-    }                                          
-
+        try {
+            int produtoId = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite o ID do produto a ser deletado:"));
+            produtoController.deleteProduto(produtoId);
+            JOptionPane.showMessageDialog(this, "Produto deletado com sucesso!");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erro ao deletar produto.");
+        } catch (NumberFormatException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Formato de número inválido.");
+        }
+    }
+                                        
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         try {
             List<Produto> produtos = produtoController.getAllProdutos();
