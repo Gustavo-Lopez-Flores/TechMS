@@ -84,6 +84,15 @@ public class ProdutoDAO {
         return produtos;
     }
 
+    public void updateQuantidade(int id, int quantidade) throws SQLException {
+        String sql = "UPDATE produto SET quantidade = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, quantidade);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+    }
+
     public void update(Produto produto) throws SQLException {
         String sql = "UPDATE produto SET nome = ?, especificacaoTecnica = ?, garantia = ?, imagem = ?, anoFabricacao = ?, precoVenda = ?, quantidade = ?, categoriaId = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -96,15 +105,6 @@ public class ProdutoDAO {
             stmt.setInt(7, produto.getQuantidade());
             stmt.setInt(8, produto.getCategoriaId());
             stmt.setInt(9, produto.getId());
-            stmt.executeUpdate();
-        }
-    }
-
-    public void updateQuantidade(int id, int quantidade) throws SQLException {
-        String sql = "UPDATE produto SET quantidade = ? WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, quantidade);
-            stmt.setInt(2, id);
             stmt.executeUpdate();
         }
     }
