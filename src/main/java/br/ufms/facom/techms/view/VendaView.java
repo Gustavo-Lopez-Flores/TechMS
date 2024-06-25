@@ -9,6 +9,7 @@ package br.ufms.facom.techms.view;
  * @author gustavo.flores
  */
 import br.ufms.facom.techms.controller.VendaController;
+import br.ufms.facom.techms.model.entity.Cliente;
 import br.ufms.facom.techms.model.entity.Produto;
 import br.ufms.facom.techms.model.entity.ItemVenda;
 import br.ufms.facom.techms.model.entity.Venda;
