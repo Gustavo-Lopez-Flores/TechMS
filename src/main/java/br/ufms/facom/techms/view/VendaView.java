@@ -68,9 +68,6 @@ public class VendaView extends JFrame {
         JLabel lblQuantidade = new JLabel("Quantidade:");
         spnQuantidade = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
 
-        JLabel lblFormaPagamento = new JLabel("Forma de Pagamento:");
-        cmbFormaPagamento = new JComboBox<>(new String[]{"Dinheiro", "Cartão de Crédito", "Cartão de Débito"});
-
         btnAdicionarItem = new JButton("Adicionar Item");
         btnRemoverItem = new JButton("Remover Item");
         btnFinalizarVenda = new JButton("Finalizar Venda");
@@ -86,8 +83,6 @@ public class VendaView extends JFrame {
         add(cmbProdutos);
         add(lblQuantidade);
         add(spnQuantidade);
-        add(lblFormaPagamento);
-        add(cmbFormaPagamento);
         add(btnAdicionarItem);
         add(btnRemoverItem);
         add(new JScrollPane(txtItensVenda));
