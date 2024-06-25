@@ -22,11 +22,13 @@ public class VendaController {
     private VendaDAO vendaDAO;
     private ProdutoDAO produtoDAO;
     private FuncionarioDAO funcionarioDAO;
+    private ClienteDAO clienteDAO;
 
-    public VendaController(VendaDAO vendaDAO, ProdutoDAO produtoDAO, FuncionarioDAO funcionarioDAO) {
+    public VendaController(VendaDAO vendaDAO, ProdutoDAO produtoDAO, FuncionarioDAO funcionarioDAO, ClienteDAO clienteDAO) {
         this.vendaDAO = vendaDAO;
         this.produtoDAO = produtoDAO;
         this.funcionarioDAO = funcionarioDAO;
+        this.clienteDAO = clienteDAO;
     }
 
     public List<Produto> getAllProdutos() throws SQLException {
@@ -35,6 +37,10 @@ public class VendaController {
 
     public List<Funcionario> getAllFuncionarios() throws SQLException {
         return funcionarioDAO.readAll();
+    }
+
+    public List<Cliente> getAllClientes() throws SQLException {  // Novo método para obter todos os clientes
+        return clienteDAO.readAll();
     }
 
     public void finalizarVenda(Venda venda) throws SQLException {
