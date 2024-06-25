@@ -21,7 +21,7 @@ public class ProdutoDAO {
     }
 
     public void create(Produto produto) throws SQLException {
-        String sql = "INSERT INTO produto (nome, especificacaoTecnica, garantia, imagem, anoFabricacao, precoVenda, quantidade, categoria_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO produto (nome, especificacaoTecnica, garantia, imagem, anoFabricacao, precoVenda, quantidade, categoriaId) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getEspecificacaoTecnica());
@@ -50,7 +50,7 @@ public class ProdutoDAO {
                     produto.setAnoFabricacao(rs.getInt("anoFabricacao"));
                     produto.setPrecoVenda(rs.getDouble("precoVenda"));
                     produto.setQuantidade(rs.getInt("quantidade"));
-                    produto.setCategoriaId(rs.getInt("categoria_id"));
+                    produto.setCategoriaId(rs.getInt("categoriaId"));
                     return produto;
                 }
             }
@@ -73,15 +73,19 @@ public class ProdutoDAO {
                 produto.setAnoFabricacao(rs.getInt("anoFabricacao"));
                 produto.setPrecoVenda(rs.getDouble("precoVenda"));
                 produto.setQuantidade(rs.getInt("quantidade"));
-                produto.setCategoriaId(rs.getInt("categoria_id"));
+                produto.setCategoriaId(rs.getInt("categoriaId"));
                 produtos.add(produto);
             }
+        } catch (SQLException e) {
+            System.out.println("Erro ao ler todos os produtos: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
         }
         return produtos;
     }
 
     public void update(Produto produto) throws SQLException {
-        String sql = "UPDATE produto SET nome = ?, especificacaoTecnica = ?, garantia = ?, imagem = ?, anoFabricacao = ?, precoVenda = ?, quantidade = ?, categoria_id = ? WHERE id = ?";
+        String sql = "UPDATE produto SET nome = ?, especificacaoTecnica = ?, garantia = ?, imagem = ?, anoFabricacao = ?, precoVenda = ?, quantidade = ?, categoriaId = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getEspecificacaoTecnica());
@@ -97,15 +101,14 @@ public class ProdutoDAO {
     }
 
     public void updateQuantidade(int id, int quantidade) throws SQLException {
-    String sql = "UPDATE produto SET quantidade = ? WHERE id = ?";
-    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-        stmt.setInt(1, quantidade);
-        stmt.setInt(2, id);
-        stmt.executeUpdate();
+        String sql = "UPDATE produto SET quantidade = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, quantidade);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
     }
-}
 
-    
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM produto WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
