@@ -56,14 +56,6 @@ CREATE TABLE Produto (
     FOREIGN KEY (categoriaId) REFERENCES Categoria (id)
 );
 
-CREATE TABLE ItemVenda (
-    id SERIAL PRIMARY KEY,
-    quantidade INT NOT NULL,
-    precoUnitario NUMERIC(10, 2) NOT NULL,
-    produtoId INT NOT NULL,
-    FOREIGN KEY (produtoId) REFERENCES Produto (id)
-);
-
 CREATE TABLE Venda (
     id SERIAL PRIMARY KEY,
     data DATE NOT NULL,
@@ -75,12 +67,14 @@ CREATE TABLE Venda (
     FOREIGN KEY (clienteId) REFERENCES Cliente (id)
 );
 
-CREATE TABLE VendaItem (
+CREATE TABLE ItemVenda (
+    id SERIAL PRIMARY KEY,
+    quantidade INT NOT NULL,
+    precoUnitario NUMERIC(10, 2) NOT NULL,
+    produtoId INT NOT NULL,
     vendaId INT NOT NULL,
-    itemVendaId INT NOT NULL,
-    PRIMARY KEY (vendaId, itemVendaId),
-    FOREIGN KEY (vendaId) REFERENCES Venda (id),
-    FOREIGN KEY (itemVendaId) REFERENCES ItemVenda (id)
+    FOREIGN KEY (produtoId) REFERENCES Produto (id),
+    FOREIGN KEY (vendaId) REFERENCES Venda (id)
 );
 
 -- Inserção de dados
@@ -112,15 +106,10 @@ INSERT INTO Produto (nome, especificacaoTecnica, garantia, imagem, anoFabricacao
 ('Smartphone Samsung Galaxy S21', '6.2-inch, 8GB RAM', '1 ano', 'imagem1.jpg', 2021, 5000.00, 10, 1),
 ('Smartphone Apple iPhone 13', '6.1-inch, 6GB RAM', '1 ano', 'imagem2.jpg', 2021, 7000.00, 5, 2);
 
-INSERT INTO ItemVenda (quantidade, precoUnitario, produtoId) VALUES 
-(2, 5000.00, 1),
-(1, 7000.00, 2);
-
 INSERT INTO Venda (data, formaPagamento, valorTotal, funcionarioId, clienteId) VALUES 
 ('2023-01-15', 'Cartão de Crédito', 10000.00, 1, 1),
 ('2023-01-16', 'Boleto', 7000.00, 2, 2);
 
-INSERT INTO VendaItem (vendaId, itemVendaId) VALUES 
-(1, 1),
-(2, 2);
-
+INSERT INTO ItemVenda (quantidade, precoUnitario, produtoId, vendaId) VALUES 
+(2, 5000.00, 1, 1),
+(1, 7000.00, 2, 2);
