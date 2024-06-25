@@ -8,6 +8,7 @@ package br.ufms.facom.techms.controller;
  *
  * @author gustavo.flores
  */
+import br.ufms.facom.techms.model.dao.ClienteDAO;
 import br.ufms.facom.techms.model.dao.ProdutoDAO;
 import br.ufms.facom.techms.model.dao.VendaDAO;
 import br.ufms.facom.techms.model.dao.FuncionarioDAO;
@@ -39,7 +40,7 @@ public class VendaController {
         return funcionarioDAO.readAll();
     }
 
-    public List<Cliente> getAllClientes() throws SQLException {  // Novo método para obter todos os clientes
+    public List<Cliente> getAllClientes() throws SQLException {
         return clienteDAO.readAll();
     }
 
