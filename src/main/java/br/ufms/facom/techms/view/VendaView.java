@@ -187,7 +187,7 @@ public class VendaView extends JFrame {
         txtItensVenda.setText(sb.toString());
     }
 
-    private void finalizarVenda() {
+   private void finalizarVenda() {
         Funcionario funcionario = (Funcionario) cmbFuncionarios.getSelectedItem();
         if (funcionario == null) {
             JOptionPane.showMessageDialog(this, "Selecione um funcionário.");
@@ -205,11 +205,12 @@ public class VendaView extends JFrame {
         try {
             vendaController.finalizarVenda(venda);
             JOptionPane.showMessageDialog(this, "Venda finalizada com sucesso!");
-            venda = new Venda();  
+            venda = new Venda();  // Resetar a venda atual
             atualizarTextoItensVenda();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao finalizar venda: " + e.getMessage());  // Detalhar o erro
-            e.printStackTrace();  
+            JOptionPane.showMessageDialog(this, "Erro ao finalizar venda: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+
 }
