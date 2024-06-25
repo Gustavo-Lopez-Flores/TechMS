@@ -25,17 +25,17 @@ public class ClienteDAO {
 
     public List<Cliente> readAll() throws SQLException {
         List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT id, nome FROM cliente";
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        String sql = "SELECT * FROM cliente";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 Cliente cliente = new Cliente();
                 cliente.setId(rs.getInt("id"));
                 cliente.setNome(rs.getString("nome"));
+                // Defina os outros campos conforme necessário
                 clientes.add(cliente);
             }
         }
         return clientes;
     }
 }
-
