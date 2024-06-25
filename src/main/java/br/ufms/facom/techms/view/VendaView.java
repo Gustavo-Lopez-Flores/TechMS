@@ -26,13 +26,13 @@ public class VendaView extends JFrame {
     private VendaController vendaController;
     private JComboBox<Produto> cmbProdutos;
     private JComboBox<Funcionario> cmbFuncionarios;
-    private JComboBox<Cliente> cmbClientes;  // Novo JComboBox para clientes
+    private JComboBox<Cliente> cmbClientes; 
     private JSpinner spnQuantidade;
     private JButton btnAdicionarItem, btnRemoverItem, btnFinalizarVenda;
     private JTextArea txtItensVenda;
     private DefaultComboBoxModel<Produto> produtoModel;
     private DefaultComboBoxModel<Funcionario> funcionarioModel;
-    private DefaultComboBoxModel<Cliente> clienteModel;  // Novo modelo para clientes
+    private DefaultComboBoxModel<Cliente> clienteModel; 
     private Venda venda;
 
     public VendaView(VendaController vendaController) {
@@ -45,7 +45,7 @@ public class VendaView extends JFrame {
         setTitle("Realizar Venda");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(8, 2));  // Atualizado para 8 linhas
+        setLayout(new GridLayout(8, 2));
 
         JLabel lblFuncionario = new JLabel("Funcionário:");
         cmbFuncionarios = new JComboBox<>();
@@ -53,7 +53,7 @@ public class VendaView extends JFrame {
         carregarFuncionarios();
         cmbFuncionarios.setModel(funcionarioModel);
 
-        JLabel lblCliente = new JLabel("Cliente:");  // Novo label para cliente
+        JLabel lblCliente = new JLabel("Cliente:");
         cmbClientes = new JComboBox<>();
         clienteModel = new DefaultComboBoxModel<>();
         carregarClientes();
@@ -77,8 +77,8 @@ public class VendaView extends JFrame {
 
         add(lblFuncionario);
         add(cmbFuncionarios);
-        add(lblCliente);  // Adiciona o label do cliente
-        add(cmbClientes);  // Adiciona o combo box do cliente
+        add(lblCliente); 
+        add(cmbClientes); 
         add(lblProduto);
         add(cmbProdutos);
         add(lblQuantidade);
@@ -137,7 +137,7 @@ public class VendaView extends JFrame {
 
     private void carregarClientes() {  // Método para carregar clientes
         try {
-            List<Cliente> clientes = vendaController.getAllClientes();  // Assume-se que exista esse método no controller
+            List<Cliente> clientes = vendaController.getAllClientes();
             for (Cliente cliente : clientes) {
                 clienteModel.addElement(cliente);
             }
