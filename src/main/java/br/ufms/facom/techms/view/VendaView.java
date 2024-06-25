@@ -139,7 +139,7 @@ public class VendaView extends JFrame {
         }
     }
 
-    private void carregarClientes() {  // Método para carregar clientes
+    private void carregarClientes() {
         try {
             List<Cliente> clientes = vendaController.getAllClientes();
             for (Cliente cliente : clientes) {
@@ -149,6 +149,7 @@ public class VendaView extends JFrame {
             JOptionPane.showMessageDialog(this, "Erro ao carregar clientes.");
         }
     }
+
 
     private void adicionarItem(Produto produto, int quantidade) {
         ItemVenda itemVenda = new ItemVenda();
