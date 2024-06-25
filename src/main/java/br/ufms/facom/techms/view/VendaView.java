@@ -41,11 +41,11 @@ public class VendaView extends JFrame {
         initialize();
     }
 
-    private void initialize() {
+   private void initialize() {
         setTitle("Realizar Venda");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(8, 2));
+        setLayout(new GridLayout(9, 2));  // Atualize para 9 linhas
 
         JLabel lblFuncionario = new JLabel("Funcionário:");
         cmbFuncionarios = new JComboBox<>();
@@ -68,6 +68,9 @@ public class VendaView extends JFrame {
         JLabel lblQuantidade = new JLabel("Quantidade:");
         spnQuantidade = new JSpinner(new SpinnerNumberModel(1, 1, 100, 1));
 
+        JLabel lblFormaPagamento = new JLabel("Forma de Pagamento:");
+        cmbFormaPagamento = new JComboBox<>(new String[]{"Dinheiro", "Cartão de Crédito", "Cartão de Débito"});
+
         btnAdicionarItem = new JButton("Adicionar Item");
         btnRemoverItem = new JButton("Remover Item");
         btnFinalizarVenda = new JButton("Finalizar Venda");
@@ -77,12 +80,14 @@ public class VendaView extends JFrame {
 
         add(lblFuncionario);
         add(cmbFuncionarios);
-        add(lblCliente); 
-        add(cmbClientes); 
+        add(lblCliente);
+        add(cmbClientes);
         add(lblProduto);
         add(cmbProdutos);
         add(lblQuantidade);
         add(spnQuantidade);
+        add(lblFormaPagamento);
+        add(cmbFormaPagamento);
         add(btnAdicionarItem);
         add(btnRemoverItem);
         add(new JScrollPane(txtItensVenda));
@@ -100,8 +105,7 @@ public class VendaView extends JFrame {
         btnRemoverItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Produto produto = (Produto) cmbProdutos.getSelectedItem();
-                removerItem(produto);
+                // Implementar a lógica para remover item
             }
         });
 
