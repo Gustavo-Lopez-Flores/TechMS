@@ -25,11 +25,13 @@ public class VendaView extends JFrame {
     private VendaController vendaController;
     private JComboBox<Produto> cmbProdutos;
     private JComboBox<Funcionario> cmbFuncionarios;
+    private JComboBox<Cliente> cmbClientes;  // Novo JComboBox para clientes
     private JSpinner spnQuantidade;
     private JButton btnAdicionarItem, btnRemoverItem, btnFinalizarVenda;
     private JTextArea txtItensVenda;
     private DefaultComboBoxModel<Produto> produtoModel;
     private DefaultComboBoxModel<Funcionario> funcionarioModel;
+    private DefaultComboBoxModel<Cliente> clienteModel;  // Novo modelo para clientes
     private Venda venda;
 
     public VendaView(VendaController vendaController) {
@@ -42,13 +44,19 @@ public class VendaView extends JFrame {
         setTitle("Realizar Venda");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(7, 2));
+        setLayout(new GridLayout(8, 2));  // Atualizado para 8 linhas
 
         JLabel lblFuncionario = new JLabel("Funcionário:");
         cmbFuncionarios = new JComboBox<>();
         funcionarioModel = new DefaultComboBoxModel<>();
         carregarFuncionarios();
         cmbFuncionarios.setModel(funcionarioModel);
+
+        JLabel lblCliente = new JLabel("Cliente:");  // Novo label para cliente
+        cmbClientes = new JComboBox<>();
+        clienteModel = new DefaultComboBoxModel<>();
+        carregarClientes();
+        cmbClientes.setModel(clienteModel);
 
         JLabel lblProduto = new JLabel("Produto:");
         cmbProdutos = new JComboBox<>();
@@ -68,6 +76,8 @@ public class VendaView extends JFrame {
 
         add(lblFuncionario);
         add(cmbFuncionarios);
+        add(lblCliente);  // Adiciona o label do cliente
+        add(cmbClientes);  // Adiciona o combo box do cliente
         add(lblProduto);
         add(cmbProdutos);
         add(lblQuantidade);
@@ -124,6 +134,17 @@ public class VendaView extends JFrame {
         }
     }
 
+    private void carregarClientes() {  // Método para carregar clientes
+        try {
+            List<Cliente> clientes = vendaController.getAllClientes();  // Assume-se que exista esse método no controller
+            for (Cliente cliente : clientes) {
+                clienteModel.addElement(cliente);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar clientes.");
+        }
+    }
+
     private void adicionarItem(Produto produto, int quantidade) {
         ItemVenda itemVenda = new ItemVenda();
         itemVenda.setProduto(produto);
@@ -167,6 +188,13 @@ public class VendaView extends JFrame {
             return;
         }
         venda.setFuncionario(funcionario);
+
+        Cliente cliente = (Cliente) cmbClientes.getSelectedItem();  // Obtém o cliente selecionado
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(this, "Selecione um cliente.");
+            return;
+        }
+        venda.setCliente(cliente);  // Define o cliente na venda
 
         try {
             vendaController.finalizarVenda(venda);
