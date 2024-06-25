@@ -89,7 +89,8 @@ public class VendaView extends JFrame {
         btnRemoverItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Implementar a lógica para remover item
+                Produto produto = (Produto) cmbProdutos.getSelectedItem();
+                removerItem(produto);
             }
         });
 
@@ -130,6 +131,20 @@ public class VendaView extends JFrame {
         itemVenda.setPrecoUnitario(produto.getPrecoVenda());
         venda.addItem(itemVenda);
         atualizarTextoItensVenda();
+    }
+
+    private void removerItem(Produto produto) {
+        ItemVenda itemRemover = null;
+        for (ItemVenda item : venda.getItens()) {
+            if (item.getProduto().getId() == produto.getId()) {
+                itemRemover = item;
+                break;
+            }
+        }
+        if (itemRemover != null) {
+            venda.removeItem(itemRemover);
+            atualizarTextoItensVenda();
+        }
     }
 
     private void atualizarTextoItensVenda() {

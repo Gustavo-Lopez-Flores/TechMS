@@ -249,7 +249,8 @@ public class ProdutoView extends javax.swing.JFrame {
             List<Produto> produtos = produtoController.getAllProdutos();
             StringBuilder sb = new StringBuilder();
             for (Produto produto : produtos) {
-                sb.append(produto.getNome()).append(", ")
+                sb.append(produto.getId()).append(" - ")
+                  .append(produto.getNome()).append(", ")
                   .append(produto.getEspecificacaoTecnica()).append(", ")
                   .append(produto.getGarantia()).append(", ")
                   .append(produto.getImagem()).append(", ")
